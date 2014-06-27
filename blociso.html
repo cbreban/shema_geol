@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Schéma géologique</title>
+    <style>
+	@import url(http://fonts.googleapis.com/css?family=Lobster);
+	body {
+        
+		background-position:top center;
+		background-size:cover;
+		font-family: 'Lobster', cursive;        
+        color:black;
+		width:1400px;
+		margin:5% auto;
+  		font-size: 20px;
+      
+      }
+
+	  #monCanvas {
+		opacity:0.9;
+		padding:5px;
+		width:100%;
+		height: 800px;
+        font-family: 'Lobster', cursive;        
+        border-radius: 10px;
+		background: white;
+		box-shadow:1px 1px 12px rgba(0,0,0,0.5);
+       	  }
+     
+    </style>
+         
+</style>
+
+  </head>
+  <body>
+      <h1>Isostasie</h1>
+      <h2>Choisir une couleur pour différencier les structures ...
+      </h2>
+      
+	<div id="monCanvas"><div role="presentation" class="kineticjs-content" style="position: relative; display: inline-block; width: 1400px; height: 800px;"><canvas height="800" width="1400" style="padding: 0px; margin: 0px; border: 0px none; background: none repeat scroll 0% 0% transparent; position: absolute; top: 0px; left: 0px; width: 1400px; height: 800px; font-family: 'Lobster','cursive';" ondrop="fonction_drop(event)" ondragover="fonction_dragover"></canvas></div></div>
+	<script src="isostasie_fichiers/kinetic-v5.1.0.min.js"></script>
+	<script src="isostasie_fichiers/datasblociso.js"></script>
+      <script src="isostasie_fichiers/datas4.js"></script>
+    <script defer="defer">
+        
+        var selected_color = 'rgba(255,0,0,1)';
+		var stage = new Kinetic.Stage({
+			container: 'monCanvas',
+			width: 1400,
+			height: 800
+        });
+        
+
+        /*fonction pour écrire des messages sur déplacement*/
+       
+            
+         var textDeplacement = new Kinetic.Text({
+        x: stage.width()/2,
+        y: 10,
+        fontFamily: 'Lobster',
+        fontSize: 24,
+        text: '',
+        fill: 'black'
+      });
+        
+        
+            
+       function writeMessage(message) {
+        textDeplacement.text(message);
+        layer.draw();     
+      }
+    /*fonction pour écrire des messages de cible souris*/    
+        
+         var textPlace = new Kinetic.Text({
+        x: 0,
+        y: 0,
+        fontFamily: 'Lobster',
+        fontSize: 24,
+        text: '',
+        fill: 'black'
+      });
+        function writeMessage2(message) {
+        textPlace.text(message);
+        layer.draw();     
+      }
+        
+    /*déclaration des couches (layer)*/
+        
+        
+        var layer = new Kinetic.Layer();
+		stage.add(layer);
+        
+        var layer2 = new Kinetic.Layer();
+        stage.add(layer2);
+        
+        var layer3 = new Kinetic.Layer();
+
+   <!-- variable pour définir le blociso -->
+       
+       /*bloc continental*/
+       var bloc1 = new Kinetic.Path ({
+	 x: 900,
+     y: 0,
+           
+		data: 'm 65.072846,94.562263 43.282464,0.64492 0,-4.66581 41.37876,-0.59011 -0.5705,-28.19206 42.78359,0.0725 -0.16978,-21.49419 42.41293,0.81978 0.63955,12.70389 39.48865,-0.72966 0,30.4974 44.7028,-0.74731 -0.0746,8.4538 43.48866,0.40988 -1.99542,185.819977 -41.54854,0.5519 -0.17191,41.46339 -41.90099,1.48501 0.15989,17.36378 -42.3782,0.59011 0,5.044 -41.56619,0.14492 0.4176,-7.183 -43.71832,0.0698 0.93023,-12.17172 -43.05843,-0.18022 -0.0901,-26.92172 -42.857864,-1.34012 0.41572,-201.919137 z M 108.35531,95.707183 107.53553,297.5013 M 149.66374,90.041373 149.66374,335,506 M 192.47216,60.849313 192.47216,340.789797 M 234.42014,54.361153 234.81777,339.1941 M 275.22856,83.899233 277.22856,330.638357 M 319.35676,91.245263 318.6271,319.51333 ',
+           fill: 'yellow', 
+          opacity: 1,
+          scale: {x:1, y:1},
+           stroke: 'black',
+        strokeWidth: 4,
+text: 'Croûte Océanique',
+   draggable : true,     
+       }); 
+    
+        /*bloc litho*/
+     var bloc2 = new Kinetic.Path ({
+	 x: 900,
+     y: 0,
+           
+		data: 'm 65.727106,359.63911 -0.56978,-63.56766 42.947984,1.40988 -0.14699,27.38965 42.71317,-0.37698 -0.745,12.39871 43.3653,0.72274 -0.44155,6.7882 41.74996,-0.75011 0.25,-4.63412 42.3782,-1.5 -0.65988,-16.544 42.78808,-1.84011 -0.15988,-41.32569 41.46831,-0.40989 -0.16907,-1.23705 -0.0606,83.47643 -294.708254,0 z M 108.35531,297.5013 107.53553,360.5013 M 149.66374,335 149.66374,360 M 192.47216,340 192.47216,360 M 234.42014,339 234.81777,360 M 275.22856,330 277.22856,360 M 319.35676,319 318.6271,360 M 200,361.4136 500.957197,360',
+           fill: 'green', 
+          opacity: 1,
+          scale: {x:1, y:1},
+           stroke: 'black',
+        strokeWidth: 4,
+
+       });   
+        
+      
+        <!-- variable pour définir zone de svg -->
+       /*lithospere*/
+        var clicpath1 = new Kinetic.Path({
+        x: 0,
+        y: 0,
+        data: 'm 86.5,229.5 110,4.5 49.5,31 28.5,3 c 13.16951,0.20457 26.33701,0.53792 39.5,1 20.01339,0.70256 40.01634,1.70271 60,3 l 9.5,5 2.5,4.5 18.5,19.5 21.5,37 24.5,31 29,23 41,18 32,10.5 49,2 43,-5 29.5,-17.5 23.5,-19.5 22,-32 13.5,-40 10.5,-17 47,-7.5 33,1 78,-43.5 -3.5,188.5 -24,10 -18.5,17 -7.5,11 -24.5,15 -12.5,-1 -28.5,7 -30,19.5 -29,24.5 -30.5,21.5 -36.5,13 -20.5,4.5 c -12.49708,0.33159 -24.99853,0.49828 -37.5,0.5 -17.8375,0.002 -35.67505,-0.33096 -53.5,-1 L 496.5,559 396,505 294.5,486.5 253,466.5 228,448 204.5,437 89,429.5 86.5,229.5 z',
+         
+          fill: 'green', 
+          opacity: 0.5,
+          scale: {x:1, y:1},
+                     /*draggable: true, */      
+
+      });
+        
+     
+        
+        /*asthenosphere*/ 
+        var clicpath2 = new Kinetic.Path({
+        x: 0,
+        y: 0,
+        data: 'm 90.5,606 -2,-176.5 117,10 21,8.5 28.5,18.5 38,20.5 102.5,17.5 103.5,55 44.5,12.5 82.5,-0.5 24,-2.5 34.5,-11.5 30.5,-17 33,-29 28.5,-18.5 19.5,-8 25,-2.5 1.5,1.5 26,-16.5 7.5,-12 19,-16 22,-9.5 -2.5,137.5 -68.5,70 L 90.5,606 z',
+         
+           fill: 'blue',
+         opacity: 0.5,
+          scale: {x:1, y:1},
+         /*draggable: true, */      
+
+       
+      });
+       /*croute continentale*/
+var clicpath3 = new Kinetic.Path({
+        x: 0,
+        y: 0,
+        data: 'm 196,234 -5,-14 6.5,-18.5 20,-5.5 30,-17.5 11.5,-8 194.5,3 29.5,-5.5 43.5,-32 27,-13.5 29,-3 31.5,1.5 22.5,6 17.5,6 19.5,19.5 10,6 7.5,2.5 12.5,1 15.5,10.5 103,0.5 -1,111.5 -34,-3.5 c -5.68331,1.43615 -11.35046,2.93627 -17,4.5 -9.0471,2.50413 -18.04905,5.17138 -27,8 l -23,41 -0.5,12.5 -19.5,32.5 -57,38 -43,4.5 -47,-2 -34.5,-10 -38,-17.5 -29,-22 -27,-35.5 -24.5,-39 -12.5,-12.5 -5,-8 -8.5,-3 c -15.32715,-1.24607 -30.66076,-2.41276 -46,-3.5 -26.98407,-1.91262 -53.98556,-3.57938 -81,-5 l -51,-30 z',
+   
+         
+            fill: 'yellow', 
+            opacity: 0.5,
+            scale: {x:1, y:1},
+         /*draggable: true, */      
+      }); 
+        
+         /*croute océanique*/
+var clicpath4 = new Kinetic.Path({
+        x: 0,
+        y: 0,
+        data: 'M 85.5,229.5 86,199 l 129,-43 81.5,0.5 -12,5 -8,2 -19.5,7 -10,8.5 -19,11.5 -26,10.5 -2.5,0.5 -9,16 6.5,17 -111.5,-5 z',
+         
+            fill: 'red', 
+            opacity: 0.5,
+            scale: {x:1, y:1},
+         /*draggable: true, */      
+      }); 
+        
+        
+        
+   <!-- variable pour définir Texte drag/drop --> 
+        
+        var text01 = new Kinetic.Text({
+            x: stage.width()/100,
+            y: stage.height()-100,
+        text: 'Croûte Océanique',
+        fontSize: '30',
+        fontFamily: 'Lobster',
+        fill: 'black',
+       draggable: true,
+      });
+        
+        /*le texte de déplacement
+        text01.on('dragstart', function() {
+        writeMessage('dragstart');
+      });
+      text01.on('dragend', function() {
+        writeMessage('relacher');
+      });	
+              fin du texte de déplacement*/
+
+        layer.add(textDeplacement);
+        
+        layer2.add(textPlace);
+        
+        var text02 = new Kinetic.Text({
+            x: stage.width()/100 + 300,
+            y: stage.height()-100,
+        text: 'Croûte continentale',
+        fontSize: '30',
+        fontFamily: 'Lobster',
+        fill: 'black',
+       draggable: true,
+      });
+      
+        var text03 = new Kinetic.Text({
+            x: stage.width()/100 ,
+            y: stage.height() - 50,
+        text: 'manteau lithosphérique',
+        fontSize: '30',
+        fontFamily: 'Lobster',
+        fill: 'black',
+       draggable: true,
+      });
+      
+        var text04 = new Kinetic.Text({
+            x: stage.width()/100 + 300,
+            y: stage.height()-50,
+        text: 'Asthénosphère',
+        fontSize: '30',
+        fontFamily: 'Lobster',
+        fill: 'black',
+       draggable: true,
+      });
+        
+       var textbloc2 = new Kinetic.Text({
+            x: stage.width()/2 + 400,
+            y: stage.height()/2-40,
+        text: 'Niveau de compensation',
+        fontSize: '30',
+        fontFamily: 'Lobster',
+        fill: 'black',
+
+      }); 
+        
+ /* regroouper texte et bloc2*/
+        
+        var groupbloc2 = new Kinetic.Group({
+            draggable:true,
+        });
+       groupbloc2.add(textbloc2);
+        groupbloc2.add(bloc2); 
+     
+ /*Message au passage de la souris*/
+        clicpath1.on('mouseover', function() {
+       /* alert("passage");*/
+            
+        document.body.style.cursor = 'pointer';
+            writeMessage('Manteau lithosphérique');
+      });
+        
+        clicpath1.on('tap', function() {
+       /* alert("passage");*/
+            writeMessage('Manteau lithosphérique');
+            document.body.style.cursor = 'pointer';
+
+      });
+        
+        
+        clicpath2.on('mouseover', function() {
+       /* alert("passage");*/
+            writeMessage('Asthénosphère');
+      });
+        clicpath2.on('tap', function() {
+       /* alert("passage");*/
+            writeMessage('Asthénosphère');
+      });
+        
+        
+        clicpath3.on('mouseover', function() {
+       /* alert("passage");*/
+            writeMessage('Croûte Continentale');
+      });
+       clicpath3.on('tap', function() {
+       /* alert("passage");*/
+            writeMessage('Croûte Continentale');
+      });
+        
+        
+    clicpath4.on('mouseover', function() {
+       /* alert("passage");*/
+            writeMessage('Croûte Océanique');
+      });
+        clicpath4.on('tap', function() {
+       /* alert("passage");*/
+            writeMessage('Croûte Océanique');
+      });
+        
+        clicpath1.on('mouseleave',function() {
+           /* alert("départ");*/
+         writeMessage('Hors des zones!!!');
+                    document.body.style.cursor = 'default';
+
+        });
+        
+        bloc1.on('mouseleave',function() {
+            document.body.style.cursor = 'default';
+        });
+         groupbloc2.on('mouseleave',function() {
+           document.body.style.cursor = 'default';
+        });
+        
+        
+        
+        clicpath1.on('mousedown', function() {
+        writeMessage('Mousedown = clic de souris');
+      });
+      clicpath1.on('mouseup', function() {
+        writeMessage('Mouseup = relevé du clic');
+          
+      }); 
+      
+         bloc1.on('mouseover', function() {
+       /* alert("passage");*/
+            writeMessage('Croûte continentale - densité = 2.7 ');
+             document.body.style.cursor = 'pointer';
+      });
+         bloc1.on('tap', function() {
+       /* alert("passage");*/
+            writeMessage('Croûte continentale - densité = 2.7 ');
+             document.body.style.cursor = 'pointer';
+      });
+        
+         bloc2.on('mouseover', function() {
+       /* alert("passage");*/
+            writeMessage('Manteau supérieur - densité = 3.3 ');
+             document.body.style.cursor = 'pointer';
+      });
+         bloc2.on('tap', function() {
+       /* alert("passage");*/
+            writeMessage('Manteau supérieur - densité = 3.3 ');
+             document.body.style.cursor = 'pointer';
+      });
+        /*fin du message */	
+  
+       
+  <!-- Définition de la palette de couleurs -->  
+        
+		 var elements = new Array();
+		for (var i=0; i<datas.length;i++) {
+			elements[i] = new Kinetic.Path({
+				data: datas[i].path,
+				stroke: 'black',
+				fill: 'white',
+				strokeWidth: 5
+			});
+			elements[i].on("click", function(){
+				this.fill(selected_color);
+				layer.draw();
+			});
+            
+            elements[i].on("touchstart", function(){
+				this.fill(selected_color);           
+				layer.draw();
+			});
+			
+            layer.add(elements[i]);
+		}
+		
+		var colors = new Array();
+		for (var i=0; i<maPalette.length;i++) {
+			colors[i] = new Kinetic.Rect({
+				x: 100 + (i%6)*60,
+				y: 50 + Math.floor(i/6)*60,
+				width: 50,
+				height: 50,
+				stroke: 'black',
+				fill: maPalette[i],
+				strokeWidth: 2
+			});
+			colors[i].on("click", function(){
+				selected_color = this.fill();
+			});
+            
+            colors[i].on("touchstart", function(){
+				selected_color = this.fill();
+			});
+			layer.add(colors[i]);
+		}
+
+		layer.draw();
+       
+
+       
+/* couche pour recevoir DnD */
+        
+    layer3.add(clicpath1);
+    layer3.add(clicpath2);
+    layer3.add(clicpath3);
+    layer3.add(clicpath4);
+    layer3.add(bloc1);
+        layer3.add(groupbloc2);
+        
+    stage.add(layer3);
+        
+/*couche our recevoir les textes*/       
+    layer2.add(text01);
+    layer2.add(text02);
+    layer2.add(text03);
+    layer2.add(text04);
+    stage.add(layer2);
+    
+ 
+        
+        
+
+        
+        
+   
+
+		
+	</script>
+
+    
+    
+ <FORM METHOD="LINK" ACTION="index6.html">
+<INPUT TYPE="submit" VALUE="Précédent">
+</FORM> 
+<span id="buttons">
+     <FORM METHOD="LINK" ACTION="texte_menu.html">
+<INPUT TYPE="submit" VALUE="suivant">
+</FORM>     </Span>
+     
+</body></html>

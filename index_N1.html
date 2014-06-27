@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Schéma géologique</title>
+    <style>
+	@import url(http://fonts.googleapis.com/css?family=Lobster);
+	body {
+        
+		background-position:top center;
+		background-size:cover;
+		font-family: 'Lobster', cursive;        
+        color:black;
+		width:1400px;
+		margin:5% auto;
+  		font-size: 20px;
+      
+      }
+
+	  #monCanvas {
+		opacity:0.9;
+		padding:5px;
+		width:100%;
+		height: 800px;
+		border-radius: 10px;
+		background: white;
+		box-shadow:1px 1px 12px rgba(0,0,0,0.5);
+	  }
+    </style>
+  </head>
+  <body>
+      <h1>Isostasie</h1>
+      <h2>Choisir une couleur pour différencier les structures ...
+      </h2>
+	<div id="monCanvas"><div role="presentation" class="kineticjs-content" style="position: relative; display: inline-block; width: 1400px; height: 800px;"><canvas height="800" width="1400" style="padding: 0px; margin: 0px; border: 0px none; background: none repeat scroll 0% 0% transparent; position: absolute; top: 0px; left: 0px; width: 1400px; height: 800px;"></canvas></div></div>
+	<script src="isostasie_fichiers/kinetic-v5.js"></script>
+	<script src="isostasie_fichiers/datas4.js"></script>
+	<script defer="defer">
+		var selected_color = 'rgba(255,0,0,1)';
+		var stage = new Kinetic.Stage({
+			container: 'monCanvas',
+			width: 1400,
+			height: 800
+        });
+		var layer = new Kinetic.Layer();
+		stage.add(layer);
+		var elements = new Array();
+		for (var i=0; i<datas.length;i++) {
+			elements[i] = new Kinetic.Path({
+				data: datas[i].path,
+				stroke: 'black',
+				fill: 'white',
+				strokeWidth: 5
+			});
+			elements[i].on("click", function(){
+				this.fill(selected_color);
+				layer.draw();
+			});
+            
+            elements[i].on("touchstart", function(){
+				this.fill(selected_color);           
+				layer.draw();
+			});
+			
+            layer.add(elements[i]);
+		}
+		
+		var colors = new Array();
+		for (var i=0; i<maPalette.length;i++) {
+			colors[i] = new Kinetic.Rect({
+				x: 1000 + Math.floor(i/5)*60,
+				y: 50 + (i%5)*60,
+				width: 50,
+				height: 50,
+				stroke: 'black',
+				fill: maPalette[i],
+				strokeWidth: 2
+			});
+			colors[i].on("click", function(){
+				selected_color = this.fill();
+			});
+            
+            colors[i].on("touchstart", function(){
+				selected_color = this.fill();
+			});
+			layer.add(colors[i]);
+		}
+
+		layer.draw();
+		
+	</script>
+      
+  
+</body></html>

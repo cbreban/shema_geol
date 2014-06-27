@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Raphaël · Australia</title>
+        <link rel="stylesheet" href="raphael/demo.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="raphael/demo-print.css" type="text/css" media="print">
+        <style type="text/css" media="screen">
+            #canvas {
+                height: 600px;
+                left: 2%;
+                margin: 0px 0 0 0px;
+                position: absolute;
+                top: 5%;
+                width: 1200px;
+            }
+            #paper {
+                height: 800px;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 1200px;
+            }
+            #nsw, #vic, #wa, #sa, #nt, #qld, #tas {
+                display: none;
+                height: 400px;
+                overflow: auto;
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 400px;
+            }
+            h2 {
+                text-align: center;
+            }
+        </style>
+        <script src="raphael/raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+        window.onload = function () {
+            /*largeur de la zone de dessin */
+            var R = Raphael("paper", 1200, 800);
+            var attr = {
+                fill: "#333",
+                stroke: "#666",
+                "stroke-width": 1,
+                "stroke-linejoin": "round"
+            };
+            var aus = {};
+            /*asténo*/
+            aus.vic = R.path("m 26.870058,489.77935 -2.828427,-158.39191 93.338099,3.53553 12.02081,3.53553 c 7.6913,5.5444 15.47078,10.96647 23.33452,16.26346 11.60591,7.81771 23.39535,15.36296 35.35534,22.62742 l 30.4056,9.19238 c 12.18255,2.14811 24.45262,3.79985 36.76955,4.94975 6.58835,0.61509 13.1901,1.08664 19.79899,1.41422 l 15.55635,6.36396 13.43503,7.07106 26.16295,16.26346 c 8.82022,4.28147 17.54414,8.76133 26.16295,13.43503 9.56137,5.18483 18.99338,10.60823 28.28427,16.26346 l 41.01219,9.19238 36.76956,2.12132 28.99137,-2.82842 26.87006,-7.77818 31.81981,-15.55635 c 11.68001,-10.02372 23.466,-19.92395 35.35533,-29.69848 6.59742,-5.42391 13.22669,-10.80914 19.79899,-16.26346 4.50537,-3.73898 8.98387,-7.51035 13.43503,-11.31371 l 17.67767,-2.12132 19.79899,0 6.36396,-4.24264 12.02082,-9.89949 7.77817,-9.8995 10.60661,-11.31371 11.3137,-7.07106 4.24264,-1.41422 4.24265,-4.24264 5.65685,-7.07107 -0.70711,131.52187 -64.34671,64.34671 2.82842,-141.42135 -1.41421,144.24978 -627.910822,-31.81981 z").attr(attr);
+            
+            /*Manteau Lithospérique*/
+            aus.nsw = R.path("m 24.748737,330.68033 95.459413,4.24264 c 3.04166,1.92181 6.10607,3.80761 9.19239,5.65685 7.8761,4.71916 15.89486,9.20023 24.04163,13.43503 l 22.62742,16.26346 21.2132,9.19239 24.74874,7.77817 c 11.74803,1.70323 23.53788,3.11802 35.35534,4.24264 5.65106,0.53779 11.30843,1.00924 16.97056,1.41422 l 25.45585,10.6066 c 14.53397,8.8534 29.14832,17.57486 43.84062,26.16295 12.67046,7.40626 25.3989,14.71333 38.18376,21.92031 l 33.94113,7.77817 c 9.40266,1.17739 18.83465,2.12059 28.28427,2.82843 9.41446,0.70521 18.84642,1.1768 28.28427,1.41421 l 31.1127,-6.36396 c 9.6488,-4.04297 19.31268,-8.04995 28.99138,-12.02081 6.35759,-2.60832 12.72158,-5.20106 19.09188,-7.77818 10.85879,-9.91132 21.94053,-19.57837 33.23402,-28.99138 11.33985,-9.45165 22.89319,-18.64716 34.64823,-27.57716 l 37.47666,-3.53553 18.38478,-13.43503 c 2.37034,-2.81729 4.7274,-5.64576 7.07106,-8.48528 2.13244,-2.58361 4.25379,-5.17637 6.36397,-7.77818 l 7.77817,-7.07107 7.07107,-4.24264 7.07107,-2.12132 7.07106,-9.89949 2.12132,-166.1701 -62.9325,38.89088 -0.70711,181.01933 0,-181.01933 -43.13351,-0.70711 -16.26346,3.53553 -16.97056,14.84925 -9.89949,28.99137 -14.84925,31.1127 -15.55635,17.67767 -26.87005,17.67767 -29.69849,12.02082 -26.16295,0.7071 -30.40559,-2.12132 -35.35534,-11.3137 -27.57716,-14.14214 -21.21321,-16.97056 -18.38477,-22.62742 -41.0122,-59.39697 -12.02081,-11.31371 -36.76956,0 -28.99137,-4.94975 -30.4056,0 -14.84924,-2.82842 -18.38477,-12.72792 c -6.79709,-3.6089 -13.63298,-7.14471 -20.5061,-10.60661 -1.88283,-0.94836 -3.76846,-1.89117 -5.65685,-2.82842 l -93.3381,-3.53554 2.828427,183.14066 z ").attr(attr);
+            
+            /*croute oceanique*/
+            aus.wa = R.path("m 24.041631,147.53967 -1.414214,-28.99138 108.894443,-34.64823 67.17515,0 c -9.73266,3.83809 -19.39841,7.84584 -28.99138,12.02082 -4.25714,1.85276 -8.49995,3.73845 -12.72792,5.65685 l -13.43503,11.31371 -19.09189,8.48528 -102.53048,-4.24264 99.70206,4.94975 -7.07107,7.77817 -2.12132,3.53554 0,9.89949 4.24264,7.77818 -92.630989,-3.53554z").attr(attr);
+           
+            /*croute continentale bas*/
+            aus.sa = R.path("m 719.50876,158.74635 2.50875,-97.339395 -65.72919,33.617215 0,102.35689 1.0035,-101.85514 64.72569,-34.620715 -83.79217,-2.006998 -6.52274,-5.017494 -9.03149,-4.013996 -13.04549,0 -25.58922,-23.582226 -10.03499,-4.515745 -8.52974,-3.010497 c -7.8584,-0.260081 -15.71988,-0.427347 -23.58223,-0.50175 -4.0139,-0.03798 -8.02824,-0.05177 -12.04199,0 -5.02021,0.06475 -10.0391,0.232043 -15.05248,0.50175 l -6.02099,-0.50175 -86.30092,32.111967 -22.57872,13.045487 -131.96012,-2.508748 -103.86214,36.627713 -7.02449,3.010492 -4.014,5.0175 c -1.82722,1.19029 -3.6671,2.36113 -5.51924,3.51225 -3.63025,2.25624 -7.30776,4.43684 -11.03849,6.52274 -4.76709,2.66535 -9.62074,5.17586 -14.55074,7.52624 l -7.02449,6.02099 -2.50875,5.51925 -0.50175,8.52974 3.0105,7.52624 10.53674,6.021 9.53324,3.01049 10.03499,7.52625 11.03849,7.02449 12.04199,4.51574 20.06998,3.0105 18.56473,-1.50525 c 4.67994,0.69014 9.363,1.35915 14.04898,2.007 5.01423,0.69323 10.0318,1.36224 15.05249,2.007 l 36.62771,1.50525 11.54024,9.53324 c 4.68178,7.79799 9.53356,15.49392 14.55073,23.08047 4.24797,6.42344 8.61424,12.76808 13.04549,19.06648 6.06393,8.61902 12.25007,17.15217 18.56473,25.58923 4.28953,5.73127 8.63833,11.41817 13.04549,17.05948 l 19.56823,15.55423 c 7.20882,3.13891 14.4007,6.31672 21.57522,9.53324 8.8181,3.95338 17.6139,7.96691 26.59273,11.54024 5.45741,2.1719 10.97996,4.1801 16.55773,6.021 11.03261,-0.42388 22.07507,-0.59119 33.11546,-0.50175 7.19373,0.0583 14.38657,0.22556 21.57523,0.50175 l 20.06998,-7.52625 25.08748,-13.04548 19.56823,-18.06298 15.55423,-25.58923 13.04549,-29.10147 4.01399,-15.05248 18.06298,-15.55424 16.55774,-4.51574 42.6487,2.007 0,-101.102525 -89.31141,-3.763121 -15.55423,-8.027992 -12.54374,-0.501749 -11.54023,-6.020994 -20.06998,-20.571729 -21.57523,-6.522743 -40.64171,-1.505249 -19.56823,1.505249 -8.52974,2.508747 -63.22044,44.655704 -191.16655,2.508748 -1.0035,-0.50175 0,0 0,0 191.16656,-3.010497 12.54373,-7.526242 c 5.48085,-4.066436 11.00043,-8.080675 16.55774,-12.041988 4.98735,-3.555044 10.00509,-7.067461 15.05248,-10.536739 6.88395,-4.411548 13.91355,-8.59583 21.07348,-12.543737 2.16251,-1.192382 4.3369,-2.363208 6.52274,-3.512246 l 18.56473,-1.505249 45.15746,2.508748 18.06298,6.522743 16.55773,15.554234 10.03499,8.027992 7.77712,2.257872 11.28936,0.752625 12.54374,5.017494 3.51224,2.759622 89.06053,3.512247 -1.25437,102.607765 63.22044,-39.13646").attr(attr);
+            
+              /*croute continentale surface*/
+           /* aus.qld = R.path("m 656.19509,95.21377 66.46804,-33.94112 -84.85281,-2.12133 -7.07107,-5.65685 -8.48528,-3.53553 -13.43503,-0.70711 -24.74874,-24.04163 -19.79899,-5.65685 -28.99138,-1.41422 -26.87005,1.41422 c -14.55143,5.358324 -29.16633,10.544256 -43.84062,15.55634 -9.1696,3.13193 -18.36239,6.195978 -27.57717,9.19239 -5.88368,1.913222 -11.77632,3.79887 -17.67767,5.65686 L 400.22244,62.68686 270.11479,61.27265 161.92745,98.395754 223.44574,98.7493 c 31.36016,0.180227 62.7021,-1.071385 94.0452,-2.12132 12.72344,-0.426211 25.45327,-0.661947 38.18377,-0.7071 8.95039,-6.372821 17.90708,-12.736788 26.87006,-19.09189 7.04113,-4.992437 14.08654,-9.979678 21.2132,-14.84924 4.91185,-3.356208 9.86203,-6.656325 14.84924,-9.89949 l 21.92031,-3.53554 25.45585,0.70711 28.99138,3.53553 12.72792,4.24264 20.5061,20.5061 12.02081,6.36396 13.43503,0.70711 16.26346,7.77817 86.26702,2.82843z").attr(attr);*/
+            
+            
+            /* "eau" pas mettre aus. pour eviter le coloriage c'est quand même un R.path*/
+          R.path("m 21.92031,117.13408 97.58074,5.65686 17.67767,-7.07107 16.97056,-10.6066 3.53553,-4.94975 12.72792,-5.65686 2.82843,-0.7071 75.66043,-26.87006 -117.37973,-2.82843 -109.60155,33.94113 134.35029,2.82842 -134.35029,-3.53553 0,19.79899  z").attr(attr);
+            
+            var current = null;
+            for (var state in aus) {
+                aus[state].color = Raphael.getColor();
+                (function (st, state) {
+                    st[0].style.cursor = "pointer";
+                    st[0].onmouseover = function () {
+                        current && aus[current].animate({fill: "#333", stroke: "#666"}, 500) && (document.getElementById(current).style.display = "");
+                        st.animate({fill: st.color, stroke: "#ccc"}, 500);
+                        st.toFront();
+                        R.safari();
+                        document.getElementById(state).style.display = "block";
+                        current = state;
+                    };
+                    st[0].onmouseout = function () {
+                        st.animate({fill: "#333", stroke: "#666"}, 500);
+                        st.toFront();
+                        R.safari();
+                    };
+                    if (state == "nsw") {
+                        st[0].onmouseover();
+                    }
+                })(aus[state], state);
+            }
+        };
+        </script>
+    </head>
+    <body>
+        <div id="canvas">
+            <div id="paper"></div>
+            <div id="nsw">
+                <h2>Manteau Lithospérique</h2>
+                <p>
+                    Le manteau lithosphérique sous-continental est connu par des xénolites remontés par les basaltes, ainsi que par des affleurements dans des régions privilégiées très tectonisées, comme la zone alpine d'Ivrée, en Italie, où la croûte profonde et le manteau supérieur sont exposés. À en juger par ces données, le manteau lithosphérique superficiel serait constitué de lherzolites à spinelles fertiles. Les données des xénolites de péridotites contenus dans les kimberlites permettent d'envisager l'existence de lherzolites à grenat plus en profondeur, ainsi que celle de harzburgites plus ou moins fertiles. L'étude de ces divers xénolites ainsi que la modélisation géochimique de la source des basaltes et des kimberlites suggèrent que la lithosphère continentale, dont ...
+                </p>
+            </div>
+            <div id="vic">
+                <h2>Asthénosphère</h2>
+                <p>
+                    L'asthénosphère (du grec asthenos, sans résistance) est la partie ductile du manteau supérieur terrestre. Elle s'étend de la lithosphère jusqu'au manteau inférieur sur 700 kilomètres1. Elle compose la mésosphère (manteau inférieur).
+
+Ce concept apparaît à la fin des années 1960 avec la révolution de la tectonique des plaques en même temps que le concept de mésosphère2. L'asthénosphère est comprise entre la lithosphère et la mésosphère. La profondeur de l'asthénosphère dépend donc directement de l'épaisseur de la lithosphère. Cette dernière varie entre environ 100 km sous les océans (quelques kilomètres au niveau des rifts océaniques) et environ 170 km sous les continents.
+
+La distinction entre ces deux régions se faisant sur des critères de comportement mécanique des roches, le passage d'un domaine à l'autre est souvent défini en utilisant une isotherme. La valeur de cet isotherme fait débat dans la communauté scientifique. On pourra trouver 1300 K3, soit un peu plus de 1 000 °C, ou 1 350 °C 4. Le programme scolaire français de 2011 de sciences de la vie et de la Terre (SVT) pour la classe de première scientifique annonce une valeur de 1 300 °C5, qui entre dans la fourchette des valeurs couramment rencontrées dans la littérature scientifique. À cette température la plupart des roches deviennent assez ductiles, ce qui permet aux lithosphères de se déplacer. La partie supérieure de l'asthénosphère est appelée zone à faible vitesse (souvent abrégée LVZ d'après l'anglais Low Velocity Zone).
+
+Sa limite inférieure se situe entre 640 et 700 km, au niveau de la zone intermédiaire qui la sépare du manteau inférieur.
+
+Elle est le siège de déformations plastiques associés à des mécanismes simultanés de glissement de dislocations (discontinuités dans la structure cristalline) et la migration d’ions et de lacunes, un processus nommé fluage par diffusion (en) ou auto-diffusion6.
+
+Elle est le siège également d'une convection, mais de nombreux arguments indiquent que cette convection présente une continuité au moins partielle avec la convection du manteau inférieur. On a imaginé que les mouvements de convections de l'asthénosphère étaient la cause du déplacement superficiel des plaques lithosphériques. Les propriétés ductiles de l'asthénosphère, entraînant un découplage mécanique avec la lithosphère, en font néanmoins un mauvais candidat pour cette mise en mouvement. On estime actuellement que le déplacement de la lithosphère et le déplacement de l'asthénosphère sont partie intégrante du système convectif mantellique, et aucun des deux ne saurait être considéré comme la cause de l'autre, si ce n'est au second ordre.
+                </p>
+            </div>
+            <div id="wa">
+                <h2>Croûte océanique</h2>
+                <p>
+                   la croûte océanique se trouve sous les océans. Elle se compose pour sa part de roches basaltiques et affiche une épaisseur moyenne de 6 km. Sa densité est également plus élevée (2,9 contre 2,7 pour la croûte continentale). Elle est générée au niveau des dorsales océaniques, ou rides médio-océaniques.
+                </p>
+            </div>
+            <div id="sa">
+                <h2>Croûte continentale</h2>
+                <p>
+                   La croûte continentale forme, comme son nom l'indique, les continents. Elle est essentiellement de nature granitique et présente une épaisseur moyenne de 30 km ;
+                </p>
+            </div>
+            
+            <div id="qld">
+                <h2>Croûte continentale</h2>
+                <p>
+                     La croûte continentale forme, comme son nom l'indique, les continents. Elle est essentiellement de nature granitique et présente une épaisseur moyenne de 30 km ;
+
+                </p>
+            </div>
+           
+                </p>
+            </div>
+        </div>
+    <FORM METHOD="LINK" ACTION="index6.html">
+<INPUT TYPE="submit" VALUE="Précédent">
+</FORM> 
+<span id="buttons">
+     <FORM METHOD="LINK" ACTION="texte_menu.html">
+<INPUT TYPE="submit" VALUE="suivant">
+</FORM>     </Span>    
+    </body>
+</html>
